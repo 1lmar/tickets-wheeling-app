@@ -1,0 +1,413 @@
+@import config
+
+.wrapper
+	height: 100%
+	min-height: 100vh
+	width: 100%
+	padding-top: 80px
+	position: relative
+	background: rgb(87,98,145)
+	background: radial-gradient(circle, rgba(87,98,145,1) 0%, rgba(30,30,64,1) 53%)
+	display: flex
+	align-items: center
+	overflow: hidden
+	&.small-screen-size
+		padding-top: 0
+
+.main-head
+	padding: 30px 50px
+	position: absolute
+	top: 0
+	left: 0
+	width: 100%
+	z-index: 9
+	&__logo
+		a
+			color: #dedede
+			text-transform: uppercase
+			text-decoration: none
+			transition: all .25s ease
+			outline: none
+			&:hover
+				color: #fff
+	&__menu
+		ul
+			display: flex
+			li
+				flex-grow: 1
+				text-align: center
+				a
+					color: #dedede
+					text-decoration: none
+					transition: all .25s ease
+					&:hover
+						color: #fff
+	&__log-in
+		display: flex
+		justify-content: flex-end
+		.log-in
+			min-width: 80px
+			text-decoration: none
+			margin-right: 30px
+			img
+				max-width: 28px
+				margin-top: -3px
+				margin-right: 3px
+			span
+				color: #dedede
+				transition: all .25s ease
+			&:hover
+				span
+					color: #fff
+
+.toggle-mnu 
+	display: inline-block
+	width: 28px
+	height: 20px
+	margin-top: 5px
+	&:hover
+		span
+			background-color: #fff
+			&:before, &:after
+				background-color: #fff
+				width: 100%
+	span:after, span:before 
+		content: ""
+		position: absolute
+		right: 0
+		top: 8px
+	span:after
+		top: 16px
+		width: 22px
+	span:before
+		width: 15px
+	span 
+		position: relative
+		display: block
+	span, span:after, span:before
+		height: 1.5px
+		background-color: #dedede
+		transition: all 0.3s
+		backface-visibility: hidden
+		border-radius: 2px
+	&.on span 
+		background-color: transparent
+	&.on span:before 
+		transform: rotate(45deg) translate(-1px, 0px)
+	&.on span:after 
+		transform: rotate(-45deg) translate(6px, -7px)
+
+.tickets
+	&-wrap
+		height: 600px
+		width: 100%
+		position: relative
+		&:before, &:after
+			content: ''
+			position: absolute
+			border: 1px solid rgba(255,255,255,.2)
+			border-radius: 50%
+			top: 50%
+			left: 50%
+			transform: translate(-50%, -50%)
+		&:before
+			width: 520px
+			height: 520px
+		&:after
+			width: 850px
+			height: 850px
+		&>div
+			z-index: 1
+	&-enemy
+		position: absolute
+		width: 37%
+		height: 122px
+		background-color: #fff
+		&-inner
+			position: relative
+			width: 100%
+			height: 100%
+			box-shadow: 0 0 20px rgba(0,0,0,0.6)
+			display: flex
+			align-items: center
+			z-index: 2
+			span
+				font-weight: bold
+				width: 100%
+				font-size: 30px
+				&.fade-in
+					animation: fadeIn .25s
+					animation-fill-mode: both
+			&:after
+				content: ''
+				position: absolute
+				background-color: #fff
+				height: 100%
+				border-radius: 10px
+				z-index: -1
+		&.first
+			left: 0
+			top: 29%
+			text-align: right
+			.tickets-enemy-inner:after
+				right: -45px
+				width: 144.34px
+				transform: skewX(-30deg)
+		&.second
+			top: 51%
+			right: 0
+			.tickets-enemy-inner:after
+				left: -45px
+				width: 144.34px
+				transform: skewX(-30deg)
+	&-list
+		height: 100%
+		position: relative
+	&-item
+		position: absolute
+		cursor: pointer
+		transition: all .35s ease
+		&.fade-in
+			animation: fadeInTicket .25s
+			animation-fill-mode: both
+		&.second, &.fourth
+			.hexagon
+				width: 150px
+				height: 86.60px
+				margin: 43.30px 0
+				&:before, &:after
+					width: 106.07px
+					height: 106.07px
+					left: 21.9670px
+				&:before
+					top: -49.033px
+				&:after
+					bottom: -49.033px
+				span
+					width: 150px
+					height: 86.6025px
+		&.first, &.fifth
+			.hexagon
+				width: 120px
+				height: 69.28px
+				margin: 34.64px 0
+				&:before, &:after
+					width: 84.85px
+					height: 84.85px
+					left: 17.5736px
+				&:before
+					top: -38.4264px
+				&:after
+					bottom: -39.4264px
+				span
+					width: 120px
+					height: 69.2820px
+		&.first
+			top: 3%
+			right: 16%
+			.tickets-item__text--date
+				font-size: 16px
+		&.second
+			top: 15%
+			right: 27%
+		&.active
+			cursor: auto
+			top: 50%
+			left: 50%
+			transform: translate(-50%, -50%)
+			.tickets-item__text
+				margin: -22px 0
+				display: block
+				&--date
+					font-weight: bold
+					font-size: 30px
+					text-transform: none
+					span
+						display: inline-block
+				& > *
+					display: block
+				&--btn
+					display: inline-block
+		&.fourth
+			top: 54%
+			left: 27%
+		&.fifth
+			top: 71%
+			left: 16%
+			.tickets-item__text--date
+				font-size: 16px
+		&.hidden
+			display: none
+		&__hexagon
+			position: relative
+			width: 100%
+			height: 100%
+		&__text
+			position: absolute
+			top: 0
+			left: 0
+			width: 100%
+			height: 100%
+			z-index: 9
+			color: #1e1e40
+			text-align: center
+			font-size: 18px
+			display: flex
+			align-items: center
+			justify-content: center
+			& > *
+				display: none
+			&--stadium
+				margin-bottom: 10px
+			&--date
+				font-size: 20px
+				line-height: 1.3
+				text-transform: uppercase
+				display: block
+				span
+					display: block
+			&--btn
+				margin-top: 20px
+				// display: inline-block
+				color: #1e1e40
+				border: 1px solid #1e1e40
+				border-radius: 5px
+				padding: 7px 12px
+				font-size: 16px
+				transition: all .25s ease
+				&:hover
+					text-decoration: none
+					color: #fff
+					background-color: #1e1e40
+
+.hexagon
+	position: relative
+	width: 250px
+	height: 144.34px
+	background-color: #fff
+	margin: 72.17px 0
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.6)
+	transform: rotate(30deg)
+	border-radius: 10px
+	&:before, &:after
+		content: ""
+		position: absolute
+		z-index: 1
+		width: 176.78px
+		height: 176.78px
+		-webkit-transform: scaleY(0.5774) rotate(-45deg)
+		-ms-transform: scaleY(0.5774) rotate(-45deg)
+		transform: scaleY(0.5774) rotate(-45deg)
+		background-color: inherit
+		left: 36.6117px
+		box-shadow: 0 0 20px rgba(0, 0, 0, 0.6)
+		border-radius: 10px
+	&:before
+		top: -84.3883px
+	&:after
+		bottom: -85.3883px
+	span
+		display: block
+		position: absolute
+		top: 0px
+		left: 0
+		width: 250px
+		height: 144.3376px
+		z-index: 2
+		background: inherit
+		border-radius: 10px
+
+.hexagon-medium
+	position: relative
+	width: 150px
+	height: 86.60px
+	background-color: #fff
+	margin: 43.30px 0
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.6)
+	transform: rotate(30deg)
+	border-radius: 10px
+	&:before, &:after
+		content: ""
+		position: absolute
+		z-index: 1
+		width: 106.07px
+		height: 106.07px
+		transform: scaleY(0.5774) rotate(-45deg)
+		background-color: inherit
+		left: 21.9670px
+		box-shadow: 0 0 20px rgba(0, 0, 0, 0.6)
+		border-radius: 10px
+	&:before
+		top: -49.033px
+	&:after
+		bottom: -49.033px
+	span
+		display: block
+		position: absolute
+		top: 0px
+		left: 0
+		width: 150px
+		height: 86.6025px
+		z-index: 2
+		background: inherit
+		border-radius: 10px
+
+.hexagon-small
+	position: relative
+	width: 120px
+	height: 69.28px
+	background-color: #ffffff
+	margin: 34.64px 0
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.6)
+	transform: rotate(30deg)
+	border-radius: 10px
+	&:before, &:after
+		content: ""
+		position: absolute
+		z-index: 1
+		width: 84.85px
+		height: 84.85px
+		transform: scaleY(0.5774) rotate(-45deg)
+		background-color: inherit
+		left: 17.5736px
+		box-shadow: 0 0 20px rgba(0, 0, 0, 0.6)
+		border-radius: 10px
+	&:before
+		top: -38.4264px
+	&:after
+		bottom: -39.4264px
+	span
+		display: block
+		position: absolute
+		top: 0px
+		left: 0
+		width: 120px
+		height: 69.2820px
+		z-index: 2
+		background: inherit
+		border-radius: 10px
+
+@media (min-width: 1280px)
+	.tickets-wrap
+		&:before
+			width: 600px
+			height: 600px
+		&:after
+			width: 930px
+			height: 930px
+
+@keyframes fadeIn
+	from
+		// transform: scale(0.95)
+		opacity: 0
+	to
+		// transform: scale(1)
+		opacity: 1
+
+@keyframes fadeInTicket
+	from
+		// transform: scale(0.8) translate(-50%,-50%)
+		opacity: 0
+	to
+		// transform: scale(1) translate(-50%,-50%)
+		opacity: 1
